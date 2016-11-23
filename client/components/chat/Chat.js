@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 import Paper from 'material-ui/Paper';
 import ChatInput from './ChatInput';
 import ChatText from './ChatText';
@@ -40,7 +41,25 @@ class Chat extends Component {
 	}
 	componentDidMount() {
 		socket.on('send:message', this._recieveMessage.bind(this));
+		// Scroll to the bottom on initialization
+		if(this.state.chatMessages.length > 1) {
+    		var len = this.state.chatMessages.length - 1;
+    		const node = ReactDOM.findDOMNode(this['_div' + len]);
+    		if (node) {
+      			node.scrollIntoView();
+    		}
+    	}
 	}
+	componentDidUpdate() {
+    	// Scroll as new elements come along
+    	if(this.state.chatMessages.length > 1){
+    		var len = this.state.chatMessages.length - 1;
+    		const node = ReactDOM.findDOMNode(this['_div' + len]);
+    		if (node) {
+      			node.scrollIntoView();
+    		}
+    	}
+  }
 	_recieveMessage(message) {
 		chatMessages.push(message);
 		this.setState({chatMessages});
@@ -56,7 +75,7 @@ class Chat extends Component {
 		const chats = this.state.chatMessages;
 		let listView = []
     	for(let i=0; i < chatMessages.length; i ++) {
-           listView.push(<li key={i} style={styles.listMargin}>
+           listView.push(<li key={i} style={styles.listMargin} ref={(ref) => this['_div'+i] = ref}>
               <ChatText chatTextMessages = {chats[i]}/>
             </li>);
           }

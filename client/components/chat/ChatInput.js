@@ -56,7 +56,7 @@ class ChatInput extends Component {
               <Row>
                 <Col xs={12}>
                 <Row center="xs">
-                <Col xs={11} sm={11} md={11} lg={11}>
+                <Col xs={10} sm={10} md={10} lg={10}>
                 <FormsyText
                   name="messages"
                   validations="minLength:1"
@@ -68,7 +68,7 @@ class ChatInput extends Component {
                   style = {styles.inputArea}
                 />
                 </Col>
-                <Col xs={1} sm={1} md={1} lg={1}>
+                <Col xs={2} sm={2} md={2} lg={2}>
                   <IconButton
                     type="submit"
                     disabled={!this.state.canSubmit}
