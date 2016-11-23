@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import moment from 'moment';
 import {Grid, Row, Col} from 'react-flexbox-grid';
 import Formsy from 'formsy-react';
 import FormsyText from 'formsy-material-ui/lib/FormsyText';
@@ -30,14 +31,15 @@ class ChatInput extends Component {
   	}
 
   	submitForm(data) {
+      var localTime  = moment.utc(new Date()).toDate();
     	var newMessage = {
     		  author: this.props.userName,
-      		chatTime: "19:00:06 am",
+      		chatTime: moment(localTime).format('llll'),
       		chatText: data.messages,
       		authorAvtar: "https://twitter.com/@"+this.props.userName+"/profile_image?size=original"
     	}
     	this.props.addChat(newMessage);
-		this.refs.chat.setState({value: ''});
+		  this.refs.chat.setState({value: ''});
   	}
 
   	notifyFormError(data) {

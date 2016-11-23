@@ -27,7 +27,8 @@ const styles = {
     overflowY: "scroll"
   },
   listMargin: {
-  	marginTop: 20
+  	marginTop: 20,
+  	marginLeft: -20
   }
 }
 const chatMessages = [];

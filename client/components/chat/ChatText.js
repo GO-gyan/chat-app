@@ -33,7 +33,8 @@ const styles = {
   },
   timestamp: {
     fontSize: 12,
-    margin: "0 10px"
+    margin: "0 10px",
+    color: "#8cb53f"
   },
   messageBody: {
     fontSize: 14,
